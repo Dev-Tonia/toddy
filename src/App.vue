@@ -1,5 +1,5 @@
 <template>
-  <HeaderVue />
+  <HeaderVue @toggle-dark-mode="toggleDarkMode" />
   <AddTodoVue @add-todo="addTodo" />
 
   <div class="rounded-lg w-full mt-6 overflow-hidden">
@@ -23,6 +23,10 @@ import TaskTileVue from "./components/TaskTile.vue";
 import TodoFooterVue from "./components/TodoFooter.vue";
 import HeaderVue from "./components/Header.vue";
 import AddTodoVue from "./components/AddTodo.vue";
+import { useDark, useToggle } from "@vueuse/core";
+
+const isDark = useDark();
+const toggleDark = useToggle(isDark);
 
 export default {
   components: {
@@ -66,6 +70,16 @@ export default {
     },
     deleteCompleteTodo() {
       this.tasks = this.tasks.filter((task) => task.complete !== true);
+    },
+    toggleDarkMode() {
+      toggleDark();
+
+      this.darkMode = toggleDark;
+      if (this.darkMode) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     },
   },
 };

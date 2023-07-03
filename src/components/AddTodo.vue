@@ -1,9 +1,9 @@
 <template>
-  <div class="w-full flex gap-4 bg-white py-2 px-5 rounded">
+  <div class="w-full flex gap-4 bg-white dark:bg-gray-950 py-2 px-5 rounded">
     <input type="radio" class="border-0 inline-block" />
     <input
       type="text"
-      class="w-full text-left border-0 outline-0 inline-block text-black"
+      class="w-full text-left border-0 outline-0 inline-block text-black bg-transparent dark:text-white"
       v-model.trim="text"
       @keyup.enter="onEnter"
       placeholder="Currently typing"

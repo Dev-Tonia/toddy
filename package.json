@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.3",
+    "@vueuse/core": "^10.2.1",
     "vue": "^3.2.47"
   },
   "devDependencies": {

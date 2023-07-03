@@ -1,9 +1,12 @@
 <template>
   <div
     v-if="tasks.length === 0 ? false : true"
-    class="flex justify-between bg-white gap-4 text-gray-400 py-2 px-5"
+    class="flex justify-between bg-white gap-4 text-gray-400 py-2 px-5 dark:bg-slate-800"
   >
-    <p>{{ getNumberOfItems }} items left</p>
+    <p>
+      {{ getNumberOfItems }}
+      {{ getNumberOfItems === 1 ? "item" : "items" }} left
+    </p>
     <div>
       <span
         v-for="(tab, index) in tabs"
@@ -11,7 +14,7 @@
         class="inline-block mx-1 cursor-pointer"
         :class="{
           'text-blue-500': activeBtn === tab,
-          'text-gray-500': activeBtn !== tab,
+          'text-gray-400': activeBtn !== tab,
         }"
         @click="toggleButton(tab)"
         >{{ tab }}</span
