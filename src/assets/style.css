@@ -4,6 +4,35 @@
 @tailwind components;
 @tailwind utilities;
 
-input:focus {
+input[type="text"]:focus {
   text-align: center;
+}
+
+[type="checkbox"],
+[type="radio"] {
+  -webkit-appearance: none;
+  border: 2px solid lightgray;
+  margin-right: 10px;
+  position: relative;
+}
+[type="checkbox"]:checked {
+  background: linear-gradient(
+    to right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+  border: none;
+}
+[type="checkbox"]:checked:after {
+  content: "\f00c";
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0.7rem;
+  left: 20%;
+  font-size: 0.8rem;
+  color: white;
+  line-height: 0;
+  z-index: 4;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }

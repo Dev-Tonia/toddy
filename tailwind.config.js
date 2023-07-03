@@ -17,6 +17,9 @@ export default {
       fontFamily: {
         josefin: ["Josefin Sans"],
       },
+      screens: {
+        "x-sm": "540px",
+      },
     },
   },
   plugins: [],

@@ -2,7 +2,9 @@
   <HeaderVue @toggle-dark-mode="toggleDarkMode" />
   <AddTodoVue @add-todo="addTodo" />
 
-  <div class="rounded-lg w-full mt-6 overflow-hidden">
+  <div
+    class="rounded-lg w-full mt-6 overflow-hidden shadow-xl shadow-gray-300 dark:shadow-black"
+  >
     <TaskTileVue
       v-for="task in filteredItems"
       :key="task.id"
@@ -16,10 +18,26 @@
       @delete-complete-todo="deleteCompleteTodo"
     />
   </div>
+  <MobileFooterVue
+    class="x-sm:hidden"
+    :tabs="tabs"
+    :tasks="tasks"
+    @toggle-button="toggleButton"
+    @delete-complete-todo="deleteCompleteTodo"
+  />
+
+  <div
+    class="text-center pt-28 text-2xl italic text-gray-700"
+    v-if="tasks.length === 0"
+  >
+    What do you want to do today!!
+  </div>
 </template>
 
 <script>
 import TaskTileVue from "./components/TaskTile.vue";
+import MobileFooterVue from "./components/MobileFooter.vue";
+
 import TodoFooterVue from "./components/TodoFooter.vue";
 import HeaderVue from "./components/Header.vue";
 import AddTodoVue from "./components/AddTodo.vue";
@@ -34,6 +52,7 @@ export default {
     AddTodoVue,
     TaskTileVue,
     TodoFooterVue,
+    MobileFooterVue,
   },
 
   data() {
@@ -50,9 +69,13 @@ export default {
         // this.activeTab = "Active";
         return this.tasks.filter((task) => task.complete !== true);
       } else if (this.activeTab === "Complete") {
-        // this.activeTab = "Complete";
-
-        return this.tasks.filter((task) => task.complete === true);
+        let completed = this.tasks.filter((task) => task.complete === true);
+        if (completed.length === 0) {
+          alert("No completed Task");
+          return;
+        } else {
+          return completed;
+        }
       } else {
         return this.tasks;
       }
